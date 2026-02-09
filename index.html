@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סרטוני אופטיסטור</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f7f8fa;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1.5rem 0 1.2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+        }
+
+        .logo-img {
+            height: 44px;
+            margin-bottom: 0.4rem;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        header p {
+            font-size: 0.88rem;
+            color: #999;
+            margin-top: 0.15rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        /* Video Card */
+        .video-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+        }
+
+        .video-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 28px rgba(0,0,0,0.06);
+        }
+
+        /* Card Top Row - Thumbnail + Info */
+        .card-top {
+            display: flex;
+            gap: 1.2rem;
+            padding: 1.5rem 1.5rem 1rem;
+            align-items: flex-start;
+        }
+
+        .thumbnail-wrapper {
+            flex-shrink: 0;
+            width: 180px;
+            height: 135px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f0f0f0;
+            position: relative;
+        }
+
+        .thumbnail-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumbnail-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        .card-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .card-info .video-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .video-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge {
+            font-size: 0.72rem;
+            padding: 0.2rem 0.65rem;
+            border-radius: 100px;
+            background: #f0f0f0;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .badge.date {
+            background: #e8f4fd;
+            color: #2a7ab5;
+        }
+
+        .badge.off-air {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: #1877f2;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .video-link:hover {
+            background: #1565c0;
+        }
+
+        .video-link svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Audience */
+        .audience-section {
+            padding: 0 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #aaa;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .audience-text {
+            font-size: 0.88rem;
+            color: #555;
+        }
+
+        /* Note */
+        .note-section {
+            padding: 0 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .note-box {
+            background: #fffde7;
+            border-right: 3px solid #ffc107;
+            padding: 0.6rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #6d5e00;
+        }
+
+        /* Divider */
+        .divider {
+            border: none;
+            border-top: 1px solid #f0f0f0;
+            margin: 0 1.5rem;
+        }
+
+        /* Copy Section */
+        .copy-section {
+            padding: 1rem 1.5rem 1.2rem;
+        }
+
+        .copy-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: none;
+            border: 1px solid #e0e0e0;
+            padding: 0.35rem 0.85rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: #666;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .copy-toggle:hover {
+            border-color: #bbb;
+            color: #333;
+            background: #fafafa;
+        }
+
+        .copy-toggle svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+            transition: transform 0.25s;
+        }
+
+        .copy-toggle.open svg {
+            transform: rotate(180deg);
+        }
+
+        .copy-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .copy-content.expanded {
+            max-height: 5000px;
+        }
+
+        .copy-text {
+            font-size: 0.88rem;
+            color: #444;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            margin-top: 0.75rem;
+            padding: 1rem;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .copy-text.ltr {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .copy-text.rtl {
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            margin-top: 3rem;
+            background: #fff;
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+        }
+
+        .comments-section h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .comments-section h2 svg {
+            width: 20px;
+            height: 20px;
+            fill: #888;
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .comment-form input,
+        .comment-form select,
+        .comment-form textarea {
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.9rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 0.65rem 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #fafafa;
+        }
+
+        .comment-form input:focus,
+        .comment-form select:focus,
+        .comment-form textarea:focus {
+            border-color: #1877f2;
+            background: #fff;
+        }
+
+        .comment-form textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .form-row > * {
+            flex: 1;
+        }
+
+        .submit-btn {
+            align-self: flex-start;
+            background: #1877f2;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #1565c0;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .comment-item {
+            background: #f7f8fa;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: #333;
+        }
+
+        .comment-video-badge {
+            font-size: 0.72rem;
+            background: #e8f4fd;
+            color: #2a7ab5;
+            padding: 0.15rem 0.5rem;
+            border-radius: 100px;
+        }
+
+        .comment-date {
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+
+        .comment-body {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .no-comments {
+            text-align: center;
+            color: #ccc;
+            font-size: 0.9rem;
+            padding: 1.5rem 0;
+        }
+
+        .delete-comment {
+            background: none;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            font-size: 0.8rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            transition: color 0.2s;
+        }
+
+        .delete-comment:hover {
+            color: #e53935;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #ccc;
+            font-size: 0.78rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.2rem 0.8rem 2rem;
+            }
+
+            .card-top {
+                flex-direction: column;
+                padding: 1.2rem;
+                gap: 0.8rem;
+            }
+
+            .thumbnail-wrapper {
+                width: 100%;
+                height: 200px;
+            }
+
+            .card-info .video-title {
+                font-size: 1.05rem;
+            }
+
+            .audience-section, .note-section, .copy-section {
+                padding-left: 1.2rem;
+                padding-right: 1.2rem;
+            }
+
+            .divider {
+                margin: 0 1.2rem;
+            }
+
+            header h1 {
+                font-size: 1.25rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .comments-section {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="https://optistore.net" target="_blank" rel="noopener">
+        <img src="https://optistore.net/images/2019/12/30/logo.webp?v=23.4.23" alt="Optistore Logo" class="logo-img">
+    </a>
+    <h1>סרטוני אופטיסטור</h1>
+    <p>סקירת סרטונים ומלל פרסומי</p>
+</header>
+
+<div class="container">
+
+    <!-- ===== VIDEO 1: סרטון מולטי רוסי ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/סרטון מולטי רוסי.png" alt="סרטון מולטי רוסי">
+            </div>
+            <div class="card-info">
+                <div class="video-title">סרטון מולטי רוסי</div>
+                <div class="video-meta">
+                    <span class="badge date">22.5.25</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/23U0htHHdCQSH9d" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">3 קמפיינים אזוריים לדוברי רוסית 40+ בחיפה והסביבה, מרכז, ירושלים והסביבה</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text ltr">Можно отложить всё, но не это!
+Запишитесь на самую качественную проверку зрения  уже сегодня!
+Почему стоит пройти проверку зрения именно у нас (и нигде больше)?
+
+1.	Проверка зрения проводится без каких-либо обязательств с вашей стороны. У нас работают исключительно сертифицированные оптометристы. Это будет самая профессиональная и тщательная проверка, через которую когда-либо проходили ваши глаза.
+
+2.	Оборудование в наших филиалах – самое современное в мире, на уровне офтальмологических клиник.
+
+3. Мы аккредитованы ведущими мировыми производителями линз: Zeiss, Rodenstock, Hoya, Shamir, Essilor и другими.
+Линзы любого уровня предлагаются у нас по отличным ценам, которые на десятки процентов ниже среднерыночных (начиная от 490 шекелей за пару мультифокальных линз Basic).
+Мы очень гордимся нашими ценами, поэтому публикуем их на сайте открыто и в удобной для сравнения форме.
+У нас вы можете приобрести как обычные очки для зрения, так и очки с прогрессивными линзами (мультифокаль) по самым выгодным в Израиле ценам.
+
+4.	Мы единственные, кто предоставляет абсолютную гарантию на наши товары. Очки не подошли вам? Нет проблем! Мы вернем вам деньги обратно! Мы всегда честны с нашими клиентами.
+
+5.	В каждом из наших филиалов имеется лаборатория, которая может изготовить линзы для ваших очков в течение получаса!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 2: סרטון מולטי ליאור ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/סרטון מולטי ליאור.png" alt="סרטון מולטי ליאור">
+            </div>
+            <div class="card-info">
+                <div class="video-title">סרטון מולטי ליאור</div>
+                <div class="video-meta">
+                    <span class="badge date">26.5.25</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/1YzHHSQKhajHtL5" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">3 קמפיינים אזוריים לגילאי 40+ בחיפה והסביבה, מרכז, ירושלים והסביבה</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text rtl">הגעתם לגיל 40? כבר לא מספיקה בדיקת ראיה רגילה.
+אתם מוזמנים לבדיקות הראיה המדוייקות ביותר שחוויתם.
+בדיקות ראיה למשקפי ראיה ומולטיפוקל - ללא עלות וללא התחייבות.
+אחריות מוחלטת להתאמה ושביעות רצון (Money Back).
+
+כל המסגרות והעדשות - במחירים הטובים בישראל. תבדקו אותנו!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 3: ליאור סרטון השוואה ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/ליאור סרטון השוואה.png" alt="ליאור סרטון השוואה">
+            </div>
+            <div class="card-info">
+                <div class="video-title">ליאור סרטון השוואה</div>
+                <div class="video-meta">
+                    <span class="badge date">26.11.25</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/1YOoMZnA3IlrS43" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">סרטון אחד ארצי שמיועד לבני 40+ - ירושלים והסביבה, יו"ש, מרכז ללא ראשון, אזור השרון, חיפה והסביבה</div>
+        </div>
+
+        <div class="note-section">
+            <div class="note-box">קיים סרטון זהה שעלה ב-5.2.26 שמיועד לתושבי תל אביב וגבעתיים בלבד</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text rtl">משקפי מולטיפוקל איכותיים הם אינם עניין זול.
+האם יש הצדקה לשלם אלפי שקלים עבור עדשות יוקרתיות של צייס, שמיר או הויה? (ספויילר – ממש לא תמיד).
+האם עדשות מולטיפוקל ב-500, 1,000 או 2,000 ₪ יעשו את אותה עבודה?
+מהי בכל זאת העסקה הטובה ביותר לעדשות מולטיפוקל?
+כל הפרטים בהסברים של ליאור - בסרטון שלפניכם.
+
+👓👓👓👓👓👓👓👓👓👓👓👓👓👓👓👓👓
+
+אם עדיין אינכם מכירים אותנו – אנחנו אופטיסטור.
+רשת אופטיקה קטנה ומקצועית בפריסה ארצית.
+אתם מוזמנים לבדיקות הראיה המדוייקות והמעמיקות ביותר שחוויתם, כולל בדיקות לחץ-תוך עיני, קימור ועובי קרנית, מדידות גלגל עין ועוד.
+כל בדיקות הראיה למשקפי ראיה ומולטיפוקל - ללא עלות וללא התחייבות.
+אחריות מוחלטת להתאמה ושביעות רצון (Money Back).
+כל המסגרות והעדשות - במחירים הטובים בישראל. תבדקו אותנו!
+
+אופטיסטור - optistore
+ ירושלים | תל אביב | חיפה | ראשל"צ | גבעתיים</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 4: ליאור 4 המלצות ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/ליאור 4 המלצות.png" alt="ליאור 4 המלצות">
+            </div>
+            <div class="card-info">
+                <div class="video-title">ליאור 4 המלצות</div>
+                <div class="video-meta">
+                    <span class="badge date">22.01.26</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/1RAQSdBV3G6L3uG" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">סרטון אחד ארצי שמיועד לבני 40+ - ירושלים והסביבה, יו"ש, מרכז ללא ראשון, אזור השרון, חיפה והסביבה</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text rtl">הגיע הזמן להחליף את משקפי המוטיפוקל? כך תעשו את זה נכון.
+גם אם תעשו את המולטיפוקל הבא שלכם איתנו - וגם אם לא -
+אלו ההמלצות שכדאי שתקחו איתכם לדרך:
+
+1.	ההמלצה הראשונה – בדקו אם האופטומטריסט מוסמך.
+נראה מובן מאליו, אבל מסתבר שלא. בשנים האחרונות מתרבים הסיפורים על בדיקות ראייה שמבוצעות בחנויות רבות ואפילו ברשתות הגדולות על-ידי סטודנטים, או על-ידי בודקים לא מוסמכים. זה פשוט מסוכן לראייה שלכם.
+וודאו שהבודק שלכם מוסמך ובעל ניסיון.
+
+2.	הנקודה הבאה – בדקו מדוע ממליצים לכם דווקא על סוג עדשות מסויים?
+ברשתות ובחנויות רבות נוטים להמליץ על יצרן עדשות אחד או מקסימום שניים. לרוב אלו עדשות המותג הפרטי או "מותג הבית" של אותה רשת.
+אלו העדשות הרווחיות ביותר עבור הרשת, אך האם הן המתאימות ביותר עבורכם?
+המלצתנו היא – העדיפו חנויות המציעות עדשות ממגוון גדול של יצרנים ואפשרויות. בחנויות כאלה, הסיכוי לקבל עדשות המתאימות עבורכם – הוא פשוט גבוה יותר.
+אנחנו על כל פנים - מקפידים על כך. אנו מציעים (מוסמכים) עדשות מולטיפוקל מכל היצרנים, בכל רמות האיכות והמחירים.
+המטרה היא שלצוות האופטומטריסטים שלנו לא תהיה שום מגבלה מקצועית, ושאנחנו נוכל להציע לכל אחד את העדשות המתאימות ביותר עבורו.
+
+3.	ההמלצה השלישית - בצעו השוואת מחירים.
+גם זו נשמעת המלצה ברורה מאליה אבל החלטנו לא לוותר עליה מאחר והיא מכעיסה במיוחד, משתי סיבות:
+
+- הסיבה הראשונה היא, שבתחום משקפי הראייה אתם עשויים למצוא הבדלים גדולים ופערי מחירים משמעותיים עבור אותן עדשות בדיוק.
+
+- הסיבה השניה מכעיסה אפילו יותר, והיא העובדה כי כל ניסיון לבצע השוואת מחירים עלול להתגלות כמלאכה לא פשוטה עבורכם.
+אתם צפויים לגלות שחנויות רבות פשוט מסרבות לתת הצעות מחיר ברורות בטלפון ודורשות מכם "להגיע ולקבל הצעת מחיר בחנות".
+במקרים אלה המלצתנו החד-משמעית היא: דלגו על חנות שמסרבת למסור מחיר בטלפון.
+אנחנו חושבים שאפילו לא צריך להסביר למה...
+אנו מודים שאנחנו לא אובייקטיביים בעניין זה. אנחנו גאים במחירים שלנו ופשוט מקפידים לנהוג אחרת ולפרסם באתר שלנו את כל המחירים, של כל עדשות המולטיפוקל, בצורה גלויה וברורה.
+ניתן לראות ולהוריד את כל המחירונים שלנו כאן ---> https://rebrand.ly/multifocal_prices
+
+4.	ההמלצה הרביעית – בדקו איזו אחריות אתם מקבלים
+
+משקפי מולטיפוקל הם מוצר מתוחכם הדורש מיומנות בהתאמה שלו.
+לא רוכשים מוצר כזה במקום שלא מוכן לתת אחריות מוחלטת להתאמה ולהסתגלות. או במילים אחרות – לשביעות רצון.
+וכשאנו אומרים אחריות מוחלטת – אנו מתכוונים שניתן יהיה לקבל החזר כספי מלא אם לא מרוצים, מכל סיבה שהיא.
+כך אנו נוהגים.
+התאמת משקפיים היא המקצוע שלנו, המומחיות שלנו, ולכן אנחנו אחראיים באופן מוחלט להצלחה ולשביעות הרצון של מי שסמך עלינו, והפקיד את הראייה שלו בידיים שלנו. ואם משום מה לא הצלחנו – אין סיבה שנגבה על כך תשלום...
+ניתן לקרוא על האחריות המוחלטת שלנו כאן https://tinyurl.com/ahrayut-muhletet-lehatama
+
+זהו.
+אלו ההמלצות שלנו לקראת המולטיפוקל החדש שלכם. כמובן שנשמח אם תבחרו לעשות אותו איתנו, אבל גם אם לא – קחו את ההמלצות האלה איתכם לדרך. אנחנו בטוחים שלא תצטערו.
+
+
+בהצלחה!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 5: רימרקטינג לצופי הסרטונים של ליאור ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/רימרקטינג לצופי הסרטונים של ליאור.png" alt="רימרקטינג לצופי הסרטונים של ליאור">
+            </div>
+            <div class="card-info">
+                <div class="video-title">רימרקטינג לצופי הסרטונים של ליאור</div>
+                <div class="video-meta">
+                    <span class="badge date">26.01.26</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/331PSaBhX7BFNxq" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">סרטון אחד ארצי שמיועד לבני 40+ - ירושלים והסביבה, יו"ש, מרכז ללא ראשון, אזור השרון, חיפה והסביבה</div>
+        </div>
+
+        <div class="note-section">
+            <div class="note-box">קיימים עוד 3 קמפיינים דומים: קמפיין זהה לקהל הרוסי, קמפיין זהה לאלה שהיו במאמרי המולטי שלנו, קמפיין LAL</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text rtl">למשקפי מולטיפוקל מצויינים - לא מספיקה בדיקת ראייה רגילה.
+אנו הרשת היחידה בישראל המציעה בדיקות ראייה מעמיקות ומקיפות, ברמה שלא מביישת מרפאת עיניים:
+חדות ראייה, רפרקציה מלאה, לחץ תוך-עיני, אורך גלגל עין, מדידות קרנית (קוטר וקימור) ועוד.
+כל זה – כדי להגיע לתוצאה המקיפה, האחראית והמדוייקת ביותר.
+זו הסיבה שאנו מסוגלים להציע אחריות מוחלטת להתאמה ולשביעות רצון של משקפי המולטיפוקל שלכם.
+כשהבדיקות מדוייקות - אפשר לתת אחריות מוחלטת.
+וזה גם לא עולה יותר...
+בדיקות הראייה אצלנו הן ללא עלות וללא התחייבות.
+לקביעת תור לבדיקת ראייה באחד מהסניפים שלנו (ירושלים, תל-אביב, חיפה, גבעתיים, ראשל"צ, אילת) לחצו על הקישור שמתחת לסרטון.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 6: ליאור OCT ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/ליאור OCT.png" alt="ליאור OCT">
+            </div>
+            <div class="card-info">
+                <div class="video-title">ליאור OCT</div>
+                <div class="video-meta">
+                    <span class="badge date">12.01.26</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/282faa67wWjYSve" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">3 קמפיינים אזוריים לגילאי 40+ בחיפה והסביבה, מרכז, ירושלים והסביבה</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text rtl">בדיקת סקר לגילוי מוקדם.
+
+אחרי גיל 40 כולנו חשופים למחלות עיניים שמתפתחות בשקט מוחלט - בלי כאבים, בלי סימנים, בלי שום התראה:
+גלאוקומה, ניווני רשתית, קרעים ברשתית, גידולים ועוד.
+
+כל אלה עלולים להתגלות רק כשכבר מאוחר, כשאי אפשר להחזיר את הנזק לאחור.
+אחוז נכבד מאיתנו עתיד לפגוש את אחת המחלות הללו. אלו שורה של מחלות שאחראיות לאובדן איכות הראייה ואפילו לעיוורון בעידן המודרני.
+
+אבל יש גם חדשות טובות:
+
+גילוי מוקדם מציל ראייה. פשוטו כמשמעו.
+
+כשמאתרים את הבעיה בזמן, וניתן לעשות זאת הרבה לפני הופעת הנזקים - אפשר לעצור את התפתחות הנזק ופשוט למנוע אובדן ראייה עתידי.
+
+כרשת אופטיקה, אנו מכירים היטב את הצד העצוב של הסיפור.
+את אותם לקוחות שאינם רואים טוב ומגיעים לרכוש משקפיים באופן שגרתי.
+אבל אז מתגלה שיש בעיה. לא בעיה רגילה שנפתרת במשקפיים מתאימים, אלא בעיה רפואית חמורה שהיא זו האחראית לראייה הלקויה.
+כאשר הלקוח מופנה לבירור אצל רופא עיניים, מתברר כי הוא הגיע מאוחר מדי. הסימפטומים כבר כאן.
+במרבית המקרים לא ניתן יהיה להחזיר את הגלגל לאחור, אלא רק לנסות ולבלום את המשך התפתחות הבעיה הרפואית.
+כרשת אופטיקה מתקדמת, הבנו זאת והחלטנו לדחוף בכל כוחנו בדיקות סקר לגילוי מוקדם.
+הקמנו בסניפים שלנו חדרי בדיקה ברמה של מרפאת עיניים ואנו עורכים בהם בדיקות סקר מתקדמות המסוגלות לאתר מחלות עיניים רבות כבר בשלבים הראשוניים שלהן, הרבה לפני הופעת הנזקים.
+אנו גאים במאות המקרים עד כה, בהם בדיקות הסקר שלנו הצילו ראייה. פשוטו כמשמעו.
+
+בדיקות הסקר כוללות:
+בדיקת חדות ראייה, בדיקות לחץ תוך־עיני, מדידות עומק גלגל העין, עובי וקימור קרנית, סריקת OCT עם פיענוח רופא מומחה ועוד.
+הכל בבדיקה מתקדמת אחת, ללא כאב וללא הרחבת אישונים.
+זו בדיקה שיכולה להיות ההבדל בין ראייה תקינה - לשנים של הדרדרות ראייה וטיפולים מיותרים.
+אל תחכו.
+
+לצערנו הבדיקה אינה חינם כמו בדיקות הראייה הרגילות שלנו, אך אנו כן מצליחים להציע אותה במחיר מסובסד הנמוך משמעותית מהמקובל במכונים הפרטיים - 295 ₪ בלבד כולל פענוח מלא על-ידי רופא רשתית מומחה.
+(הסבסוד מושג תודות לשיתוף פעולה של מספר גורמים: צוות אופטיסטור, הרופאים המפענחים, יצרני מעבדת הבדיקה והיבואן. תודה גדולה לכולם 🙏).
+
+אל תחכו.
+קבעו עוד היום בדיקת סקר לגילוי מוקדם.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 7: אמנון OCT ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/אמנון OCT.png" alt="אמנון OCT">
+            </div>
+            <div class="card-info">
+                <div class="video-title">אמנון OCT</div>
+                <div class="video-meta">
+                    <span class="badge date">24.12.25</span>
+                    <span class="badge off-air">לא באוויר</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/1Y4YL8tLKqjUedC" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">חיפה והסביבה</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text rtl">בדיקת סקר לגילוי מוקדם.
+
+אחרי גיל 40 כולנו חשופים למחלות עיניים שמתפתחות בשקט מוחלט - בלי כאבים, בלי סימנים, בלי שום התראה:
+גלאוקומה, ניווני רשתית, קרעים ברשתית, גידולים ועוד.
+
+כל אלה עלולים להתגלות רק כשכבר מאוחר, כשאי אפשר להחזיר את הנזק לאחור.
+אחוז נכבד מאיתנו עתיד לפגוש את אחת המחלות הללו. אלו שורה של מחלות שאחראיות לאובדן איכות הראייה ואפילו לעיוורון בעידן המודרני.
+
+אבל יש גם חדשות טובות:
+
+גילוי מוקדם מציל ראייה. פשוטו כמשמעו.
+
+כשמאתרים את הבעיה בזמן, וניתן לעשות זאת הרבה לפני הופעת הנזקים - אפשר לעצור את התפתחות הנזק ופשוט למנוע אובדן ראייה עתידי.
+
+כרשת אופטיקה, אנו מכירים היטב את הצד העצוב של הסיפור.
+את אותם לקוחות שאינם רואים טוב ומגיעים לרכוש משקפיים באופן שגרתי.
+אבל אז מתגלה שיש בעיה. לא בעיה רגילה שנפתרת במשקפיים מתאימים, אלא בעיה רפואית חמורה שהיא זו האחראית לראייה הלקויה.
+כאשר הלקוח מופנה לבירור אצל רופא עיניים, מתברר כי הוא הגיע מאוחר מדי. הסימפטומים כבר כאן.
+במרבית המקרים לא ניתן יהיה להחזיר את הגלגל לאחור, אלא רק לנסות ולבלום את המשך התפתחות הבעיה הרפואית.
+כרשת אופטיקה מתקדמת, הבנו זאת והחלטנו לדחוף בכל כוחנו בדיקות סקר לגילוי מוקדם.
+הקמנו בסניפים שלנו חדרי בדיקה ברמה של מרפאת עיניים ואנו עורכים בהם בדיקות סקר מתקדמות המסוגלות לאתר מחלות עיניים רבות כבר בשלבים הראשוניים שלהן, הרבה לפני הופעת הנזקים.
+אנו גאים במאות המקרים עד כה, בהם בדיקות הסקר שלנו הצילו ראייה. פשוטו כמשמעו.
+
+בדיקות הסקר כוללות:
+בדיקת חדות ראייה, בדיקות לחץ תוך־עיני, מדידות עומק גלגל העין, עובי וקימור קרנית, סריקת OCT עם פיענוח רופא מומחה ועוד.
+הכל בבדיקה מתקדמת אחת, ללא כאב וללא הרחבת אישונים.
+זו בדיקה שיכולה להיות ההבדל בין ראייה תקינה - לשנים של הדרדרות ראייה וטיפולים מיותרים.
+אל תחכו.
+
+לצערנו הבדיקה אינה חינם כמו בדיקות הראייה הרגילות שלנו, אך אנו כן מצליחים להציע אותה במחיר מסובסד הנמוך משמעותית מהמקובל במכונים הפרטיים - 295 ₪ בלבד כולל פענוח מלא על-ידי רופא רשתית מומחה.
+(הסבסוד מושג תודות לשיתוף פעולה של מספר גורמים: צוות אופטיסטור, הרופאים המפענחים, יצרני מעבדת הבדיקה והיבואן. תודה גדולה לכולם 🙏).
+
+אל תחכו.
+קבעו עוד היום בדיקת סקר לגילוי מוקדם.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 8: ליאור מיופיה ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/ליאור מיופיה.png" alt="ליאור מיופיה">
+            </div>
+            <div class="card-info">
+                <div class="video-title">ליאור מיופיה</div>
+                <div class="video-meta">
+                    <span class="badge date">30.05.25</span>
+                    <span class="badge off-air">לא באוויר</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/236xfK06AHEYjbh" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">3 קמפיינים אזוריים לגילאי 25+ בחיפה והסביבה, מרכז, ירושלים והסביבה</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text rtl">אנו אומרים זאת בצורה הכי ישירה:
+הם יכולים לראות טוב יותר. יש לכך חלון הזדמנויות שאסור לנו כהורים לפספס.
+
+
+אם אתם הורים לילדים המרכיבים משקפי ראיה, כדאי לדעת - אפשר לבלום את קצב עליית המספר אצל ילדים.
+
+הטכנולוגיה מוכרת בשמה: מיופיה קונטרול (Myopia Control)
+ובעברית - ניהול קוצר-ראיה אצל ילדים.
+קיים לכך חלון הזדמנויות המתחיל בגיל הרך והולך ונסגר לקראת סוף גיל ההתבגרות.
+אסור להחמיץ אותו.
+
+בחלון ההזדמנויות הזה ניתן להתאים לילד עדשות חכמות למשקפי הראיה שלו - עדשות מיופיה קונטרול.
+אלו עדשות המסוגלות לבלום בצורה משמעותית את המשך התדרדרות הראיה אצל הילדים ו"לחסוך" מהם 40%-60% מהמספר שהיה מתפתח אצלם במהלך גיל ההתבגרות (אחוז הבלימה תלוי בעדשה וביצרן).
+לעדשות מיופיה קונטרול מוענקת אחריות מפני עליית מספר (ניתן להיכנס ולקרוא גם על כך).
+
+חשוב לדעת:
+במספר מדינות בעולם (שוויץ, בלגיה, קנדה ובקרוב גם צרפת) כבר לא מוצעות לילדים עדשות משקפיים רגילות, אלא קודם כל עדשות מיופיה קונטרול -
+מתוך הבנה של מערכת הבריאות הממשלתית שיש לעשות כל מאמץ כדי שילדים יסיימו את גיל ההתבגרות עם מספר קטן ככל שניתן.
+עכשיו זה כבר בישראל.
+
+אתם מוזמנים לקרוא על כך בעיון ולקבוע בדיקת התאמה לילדכם (ללא עלות) – כאן —-> https://rebrand.ly/011efc
+
+כאמור, הבדיקה היא ללא עלות (וגם הקריאה...) ולכן באמת אין כאן מה להפסיד...
+אפשר לעשות כאן הרבה טוב לראיה של הילדים שלנו, זה שווה לפחות קריאה.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 9: מיופיה רוסי ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/מיופיה רוסי.png" alt="מיופיה רוסי">
+            </div>
+            <div class="card-info">
+                <div class="video-title">מיופיה רוסי</div>
+                <div class="video-meta">
+                    <span class="badge date">4.06.25</span>
+                    <span class="badge off-air">לא באוויר</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/1YRpwm4rdrfx0Be" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">3 קמפיינים אזוריים לדוברי רוסית בגילאי 25+ בחיפה והסביבה, מרכז, ירושלים והסביבה</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text ltr">Мы говорим это максимально прямо: Они могут видеть лучше.
+Существует окно возможностей, которое нам, как родителям, нельзя упустить.
+Если вы родители детей, носящих очки, важно знать — можно замедлить рост минусовых диоптрий у детей.
+Эта технология известна под названием Myopia Control (Контроль миопии) или контроль близорукости у детей. Существует окно возможностей, которое начинается в раннем возрасте и постепенно закрывается к концу подросткового периода. Его нельзя упустить.
+В этот период можно подобрать ребенку специальные умные линзы для очков — линзы Myopia Control. Эти линзы способны существенно замедлить ухудшение зрения у детей и «сэкономить» им от 40% до 60% диоптрий, которые бы добавились в подростковом возрасте (точный процент зависит от типа линзы и производителя). На линзы Myopia Control предоставляется гарантия на рост диоптрий.
+Важно знать: в ряде стран таких, как Швейцария, Бельгия, Канада, а скоро и Франция детям уже не предлагают обычные линзы для очков, а в первую очередь — линзы с контролем миопии, основываясь на понимании со стороны государственной системы здравоохранения, что необходимо сделать всё возможное, чтобы дети закончили подростковый возраст с минимально возможными диоптриями. Теперь эта технология доступна и в Израиле.
+Как уже сказано, проверка — бесплатная, так что вам действительно нечего терять... Мы можем сделать большое дело для зрения наших детей.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 10: בדיקות ראייה לרוסים צעירים ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/בדיקות ראייה לרוסים צעירים.png" alt="בדיקות ראייה לרוסים צעירים">
+            </div>
+            <div class="card-info">
+                <div class="video-title">בדיקות ראייה לרוסים צעירים</div>
+                <div class="video-meta">
+                    <span class="badge date">26.03.25</span>
+                    <span class="badge off-air">לא באוויר</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/1YK1N3AVruCYt0l" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">דוברי רוסית של תל אביב והסביבה (רדיוס 25 מייל) בני 25-39</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text ltr">Можно отложить всё, но не это!
+Запишитесь на самую качественную проверку зрения  уже сегодня!
+Почему стоит пройти проверку зрения именно у нас (и нигде больше)?
+
+1.	Проверка зрения проводится без каких-либо обязательств с вашей стороны. У нас работают исключительно сертифицированные оптометристы. Это будет самая профессиональная и тщательная проверка, через которую когда-либо проходили ваши глаза.
+
+2.	Оборудование в наших филиалах – самое современное в мире, на уровне офтальмологических клиник.
+
+3. Мы аккредитованы ведущими мировыми производителями линз: Zeiss, Rodenstock, Hoya, Shamir, Essilor и другими.
+Линзы любого уровня предлагаются у нас по отличным ценам, которые на десятки процентов ниже среднерыночных (начиная от 490 шекелей за пару мультифокальных линз Basic).
+Мы очень гордимся нашими ценами, поэтому публикуем их на сайте открыто и в удобной для сравнения форме.
+У нас вы можете приобрести как обычные очки для зрения, так и очки с прогрессивными линзами (мультифокаль) по самым выгодным в Израиле ценам.
+
+4.	Мы единственные, кто предоставляет абсолютную гарантию на наши товары. Очки не подошли вам? Нет проблем! Мы вернем вам деньги обратно! Мы всегда честны с нашими клиентами.
+
+5.	В каждом из наших филиалов имеется лаборатория, которая может изготовить линзы для ваших очков в течение получаса!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO 11: סרטון עם פתיחה מפתיעה לרוסים צעירים ===== -->
+    <div class="video-card">
+        <div class="card-top">
+            <div class="thumbnail-wrapper">
+                <img src="images/thumbnails/סרטון עם פתיחה מפתיעה לרוסים צעירים.png" alt="סרטון עם פתיחה מפתיעה לרוסים צעירים">
+            </div>
+            <div class="card-info">
+                <div class="video-title">סרטון עם פתיחה מפתיעה לרוסים צעירים</div>
+                <div class="video-meta">
+                    <span class="badge date">25.3.25</span>
+                    <span class="badge off-air">לא באוויר</span>
+                </div>
+                <a class="video-link" href="https://fb.me/adspreview/facebook/2Zq9Iy31efXMkfo" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    צפייה בסרטון
+                </a>
+            </div>
+        </div>
+
+        <div class="audience-section">
+            <div class="section-label">קהל יעד</div>
+            <div class="audience-text">דוברי רוסית של תל אביב והסביבה (רדיוס 25 מייל) בני 20-45</div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="copy-section">
+            <button class="copy-toggle" onclick="toggleCopy(this)">
+                הצג מלל
+                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="copy-content">
+                <div class="copy-text ltr">Четкое зрение – это Optistore! 👓
+
+Мы заботимся о вашем зрении и стиле:
+🔹 Точная проверка зрения на передовом оборудовании – качественно и профессионально.
+🔹 Огромный выбор оправ от самых известных мировых брендов – классика, тренды, повседневные и эксклюзивные модели для любого образа и настроения.
+🔹 Лучшие цены в Израиле – стильные и качественные очки по доступным ценам.
+🔹 Быстро и удобно – всего 30 минут, и ваши новые очки готовы!
+
+Видеть мир во всех деталях просто! Приходите в Optistore и выберите свои новые любимые очки!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== COMMENTS SECTION ===== -->
+    <div class="comments-section" id="comments">
+        <h2>
+            <svg viewBox="0 0 24 24"><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+            הערות
+        </h2>
+
+        <div class="comment-form">
+            <div class="form-row">
+                <input type="text" id="commenterName" placeholder="השם שלך">
+                <select id="commentVideo">
+                    <option value="">בחר סרטון (אופציונלי)</option>
+                    <option value="סרטון מולטי רוסי">סרטון מולטי רוסי</option>
+                    <option value="סרטון מולטי ליאור">סרטון מולטי ליאור</option>
+                    <option value="ליאור סרטון השוואה">ליאור סרטון השוואה</option>
+                    <option value="ליאור 4 המלצות">ליאור 4 המלצות</option>
+                    <option value="רימרקטינג לצופי הסרטונים של ליאור">רימרקטינג לצופי הסרטונים של ליאור</option>
+                    <option value="ליאור OCT">ליאור OCT</option>
+                    <option value="אמנון OCT">אמנון OCT</option>
+                    <option value="ליאור מיופיה">ליאור מיופיה</option>
+                    <option value="מיופיה רוסי">מיופיה רוסי</option>
+                    <option value="בדיקות ראייה לרוסים צעירים">בדיקות ראייה לרוסים צעירים</option>
+                    <option value="סרטון עם פתיחה מפתיעה לרוסים צעירים">סרטון עם פתיחה מפתיעה לרוסים צעירים</option>
+                    <option value="כללי">כללי</option>
+                </select>
+            </div>
+            <textarea id="commentText" placeholder="כתוב הערה..."></textarea>
+            <button class="submit-btn" onclick="addComment()">הוסף הערה</button>
+        </div>
+
+        <div class="comments-list" id="commentsList">
+            <div class="no-comments" id="noComments">עדיין אין הערות. היה הראשון!</div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    סרטוני אופטיסטור &copy; 2025
+</footer>
+
+<script>
+    // Toggle copy text
+    function toggleCopy(btn) {
+        const content = btn.nextElementSibling;
+        const isExpanded = content.classList.contains('expanded');
+
+        if (isExpanded) {
+            content.classList.remove('expanded');
+            btn.classList.remove('open');
+            btn.childNodes[0].textContent = 'הצג מלל ';
+        } else {
+            content.classList.add('expanded');
+            btn.classList.add('open');
+            btn.childNodes[0].textContent = 'הסתר מלל ';
+        }
+    }
+
+    // Comments - localStorage based
+    function loadComments() {
+        const comments = JSON.parse(localStorage.getItem('optistore_comments') || '[]');
+        const list = document.getElementById('commentsList');
+        const noComments = document.getElementById('noComments');
+
+        if (comments.length === 0) {
+            noComments.style.display = 'block';
+            return;
+        }
+
+        noComments.style.display = 'none';
+
+        // Clear existing comment items (keep noComments div)
+        const existingItems = list.querySelectorAll('.comment-item');
+        existingItems.forEach(item => item.remove());
+
+        comments.forEach((c, index) => {
+            const div = document.createElement('div');
+            div.className = 'comment-item';
+            div.innerHTML = `
+                <div class="comment-header">
+                    <div>
+                        <span class="comment-author">${escapeHtml(c.name)}</span>
+                        ${c.video ? `<span class="comment-video-badge">${escapeHtml(c.video)}</span>` : ''}
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.5rem;">
+                        <span class="comment-date">${c.date}</span>
+                        <button class="delete-comment" onclick="deleteComment(${index})" title="מחק הערה">&times;</button>
+                    </div>
+                </div>
+                <div class="comment-body">${escapeHtml(c.text)}</div>
+            `;
+            list.appendChild(div);
+        });
+    }
+
+    function addComment() {
+        const name = document.getElementById('commenterName').value.trim();
+        const video = document.getElementById('commentVideo').value;
+        const text = document.getElementById('commentText').value.trim();
+
+        if (!name || !text) {
+            alert('נא למלא שם והערה');
+            return;
+        }
+
+        const comments = JSON.parse(localStorage.getItem('optistore_comments') || '[]');
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('he-IL') + ' ' + now.toLocaleTimeString('he-IL', {hour: '2-digit', minute: '2-digit'});
+
+        comments.unshift({
+            name: name,
+            video: video,
+            text: text,
+            date: dateStr
+        });
+
+        localStorage.setItem('optistore_comments', JSON.stringify(comments));
+
+        document.getElementById('commentText').value = '';
+        document.getElementById('commentVideo').value = '';
+        loadComments();
+    }
+
+    function deleteComment(index) {
+        if (!confirm('למחוק את ההערה?')) return;
+        const comments = JSON.parse(localStorage.getItem('optistore_comments') || '[]');
+        comments.splice(index, 1);
+        localStorage.setItem('optistore_comments', JSON.stringify(comments));
+        loadComments();
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // Load comments on page load
+    loadComments();
+</script>
+
+</body>
+</html>
